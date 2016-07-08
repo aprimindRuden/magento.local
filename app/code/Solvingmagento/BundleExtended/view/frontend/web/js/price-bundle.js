@@ -265,17 +265,16 @@ define([
 
                 selectedIds[optionId] = optionValue || [];
                 break;
-
             case 'checkbox':
                 optionHash = 'bundle-option-' + optionName + '##' + optionValue;
-                if (element.parent().find(".checkbox_quantity").count != 0) {
-                    optionQty = element.parent().find(".checkbox_quantity").val() || 0;
+                var getQtyInputClass = $("." + element.prop("id"));
+                if (getQtyInputClass.val() != 0) {
+                    optionQty = getQtyInputClass.val() || 0;
                     optionConfig[optionValue].qty = optionQty;
-                    optionQty = optionConfig[optionValue].qty || 0;
                     if (element.prop("checked") === true) {
                         canQtyCustomize = $(optionConfig[optionValue]).attr("customQty", "1");
                     }
-                    toggleQtyField(element.parent().find(".checkbox_quantity"), optionQty, optionId, optionValue, canQtyCustomize);
+                    toggleQtyField(getQtyInputClass, optionQty, optionId, optionValue, canQtyCustomize);
                 } else {
                     optionQty = optionConfig[optionValue].qty || 0;
                 }
@@ -293,6 +292,33 @@ define([
                     selectedIds[optionId] = _.without(selectedIds[optionId], optionValue);
                 }
                 break;
+//            case 'checkbox':
+//                optionHash = 'bundle-option-' + optionName + '##' + optionValue;
+//                if (element.parent().find(".checkbox_quantity").count != 0) {
+//                    optionQty = element.parent().find(".checkbox_quantity").val() || 0;
+//                    optionConfig[optionValue].qty = optionQty;
+//                    optionQty = optionConfig[optionValue].qty || 0;
+//                    if (element.prop("checked") === true) {
+//                        canQtyCustomize = $(optionConfig[optionValue]).attr("customQty", "1");
+//                    }
+//                    toggleQtyField(element.parent().find(".checkbox_quantity"), optionQty, optionId, optionValue, canQtyCustomize);
+//                } else {
+//                    optionQty = optionConfig[optionValue].qty || 0;
+//                }
+//
+//                tempChanges = utils.deepClone(optionConfig[optionValue].prices);
+//                tempChanges = applyTierPrice(tempChanges, optionQty, optionConfig[optionValue]);
+//                tempChanges = applyQty(tempChanges, optionQty);
+//                changes[optionHash] = element.is(':checked') ? tempChanges : {};
+//
+//                selectedIds[optionId] = selectedIds[optionId] || [];
+//
+//                if (!_.contains(selectedIds[optionId], optionValue) && element.is(':checked')) {
+//                    selectedIds[optionId].push(optionValue);
+//                } else if (!element.is(':checked')) {
+//                    selectedIds[optionId] = _.without(selectedIds[optionId], optionValue);
+//                }
+//                break;
 
             case 'hidden':
                 optionHash = 'bundle-option-' + optionName + '##' + optionValue;

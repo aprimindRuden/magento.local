@@ -7,10 +7,10 @@ define([
     $.widget('mage.customJs', {
         _create: function() {
             this.element.on('change', function(e){
-               if($(this).closest(".field.option").is(':has("#hidden")')){
-                  $(this).closest(".field.option").find("#hidden").trigger('change');
+               if($("." + this.id).length > 0){
+                  $("." + this.id).trigger('change');
                }else{
-                   $(this).closest(".field.choice").find(".checkbox").trigger('change');
+                   $("#" + this).closest(".label").prop("htmlFor").trigger('change');
                }
             });
         }

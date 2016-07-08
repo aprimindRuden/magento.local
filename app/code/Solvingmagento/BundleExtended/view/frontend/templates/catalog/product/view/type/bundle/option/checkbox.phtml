@@ -18,8 +18,7 @@
                      <?php if ($block->showSingle()): ?>
                 <?php /* @escapeNotVerified */ echo $block->getSelectionQtyTitlePrice($_selections[0]) ?>
                 <input type="hidden"
-                       id="hidden"
-                       class="bundle-option-<?php /* @escapeNotVerified */ echo $_option->getId() ?>  product bundle option"
+                       class="bundle-option-<?php /* @escapeNotVerified */ echo $_option->getId() . '-' . $_selections[0]->getId() . '-qty-input'?>   product bundle option"
                        name="bundle_option[<?php /* @escapeNotVerified */ echo $_option->getId() ?>]"
                        value="<?php /* @escapeNotVerified */ echo $_selections[0]->getSelectionId() ?>"/>
                
@@ -48,7 +47,7 @@
 </div>
 <script type="text/x-magento-init">
 {
-    ".checkbox_quantity": { "Solvingmagento_BundleExtended/js/customJs": {} }
+    ".checkbox_quantity <?php ?>": { "Solvingmagento_BundleExtended/js/customJs": {} }
 }
 </script>
 

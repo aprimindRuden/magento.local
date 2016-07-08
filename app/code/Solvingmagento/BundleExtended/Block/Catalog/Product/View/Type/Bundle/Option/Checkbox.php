@@ -21,7 +21,9 @@ class Checkbox extends Option
         $selectionOptionId = $selection->getOptionId();
         $this->setFormatProduct($selection);
         if($isCanChangeQty == 1){
-            $qtyInput = '<input class="checkbox_quantity" style="width:50px;" id="bundle-option-' .
+            $qtyInput = '<input class="bundle-option-' .
+                $selectionOptionId . '-' .
+                $selection->getSelectionId() . ' checkbox_quantity" type="number" style="width:50px;" id="bundle-option-' .
                 $selectionOptionId . '-' .$productId . '-qty-input" name="bundle_option_qty[' . 
                 $selectionOptionId . '][' . $productId . ']" value ="' . $selection->getSelectionQty() * 1 . '">';
         }else{
